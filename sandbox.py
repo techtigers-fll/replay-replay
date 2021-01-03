@@ -1,23 +1,16 @@
 from robot import Pid, Robot, LineEdge, LineSensor
-from pybricks.parameters import Stop
+from pybricks.hubs import EV3Brick
+from pybricks.ev3devices import (Motor, ColorSensor,
+                                GyroSensor)
+from pybricks.parameters import (Port, Stop, Direction, Color,
+                               SoundFile, Button)
+from pybricks.tools import wait, StopWatch
+from pybricks.robotics import DriveBase
+from pybricks.media.ev3dev import Font
 
 def run(robot: Robot):
-    robot.reset_sensors(-30)
-    # Initialize PID
-
-    drive_pid = Pid(5, 0, 10)
-    turn_pid= Pid(3, 0, 15)
-    # lf_pid = Pid(2,0.05, 20)
-    lf_pid = Pid(1.1,0, 10)
-    
-    # robot.run_linear(800, 900)
-    
-    robot.follow_line(lf_pid, 100, 1300, LineSensor.LEFT, LineEdge.RIGHT)
-    # robot.drive(drive_pid, 100, -30, 1000)
-    # robot.run_yeeter(-400, 500)
-    # robot.drive(drive_pid, -100, -35, 2000)
-    # robot.follow_line(lf_pid, 100, 1000, LineSensor.LEFT, LineEdge.LEFT)
-    # robot.stop_on_white(drive_pid, 50, -30, LineSensor.LEFT)
-    # robot.drive(drive_pid, 100, -30, 400)
-    # robot.turn(turn_pid, -90)
-    # robot.drive(drive_pid, -100, -90, 4000)
+    line_follow_pid = (2, 0, 0)
+    robot.follow_line(line_follow_pid, 300, 10, LineSensor.CENTER, LineEdge.LEFT)
+    # big_font = Font(size=18)
+    # brick.screen.set_font(big_font)        
+    # brick.screen.draw_text(0, 20, "Checking Gyro drift...")

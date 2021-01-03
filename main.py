@@ -1,7 +1,7 @@
 #!/usr/bin/env pybricks-micropython
-from pybricks.hubs import Ev3Brick
+from pybricks.hubs import EV3Brick
 from pybricks.parameters import Button
-from pybricks.tools import wait, print, StopWatch
+from pybricks.tools import wait, StopWatch
 
 from robot import Robot
 import ida
@@ -9,7 +9,7 @@ import crane
 import design_build
 import robot_test
 import sandbox
-brick = Ev3Brick()
+brick = EV3Brick()
 robot = None
 while True:
     # Create a new robot instance
@@ -26,10 +26,10 @@ while True:
     robot.beep(True)
 
     # Wait for button to be pressed and released
-    while not any(brick.buttons()):
+    while not any(brick.buttons.pressed()):
         wait(10)
 
-    while any(brick.buttons()):
+    while any(brick.buttons.pressed()):
         wait(10)
 
 # Initialize mission

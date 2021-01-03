@@ -9,3 +9,7 @@ class LineSensor:
     """Right color sensor
     """
     RIGHT = 1
+
+    """Center color sensor
+    """
+    CENTER = 2

@@ -1,4 +1,4 @@
-from pybricks.hubs import Ev3Brick
+from pybricks.hubs import EV3Brick
 from pybricks.ev3devices import (Motor, ColorSensor,
                                 GyroSensor)
 from pybricks.parameters import (Port, Stop, Direction, Color,
@@ -8,7 +8,7 @@ from pybricks.robotics import DriveBase
 from pybricks.media.ev3dev import Font
 from .line_sensor import LineSensor
 from .line_edge import LineEdge
-brick = Ev3Brick()
+brick = EV3Brick()
 class Robot:
     def __init__(self):      
         """Class that represents the robot
@@ -18,26 +18,26 @@ class Robot:
             self.state = "Port 1: Left Color"
             self.left_color = ColorSensor(Port.S1)
 
-            self.state = "Port 2: Right Color"
-            self.right_color = ColorSensor(Port.S2)
+            self.state = "Port 2: Center Color"
+            self.center_color = ColorSensor(Port.S2)
 
-            self.state = "Port 3: Right Gyro"
-            self.right_gyro = GyroSensor(Port.S3, Direction.COUNTERCLOCKWISE)
-    
-            self.state = "Port 4: Left Gyro"    
-            self.left_gyro = GyroSensor(Port.S4, Direction.COUNTERCLOCKWISE)
+            self.state = "Port 3: Right Color"
+            self.right_color = ColorSensor(Port.S3)
+
+            self.state = "Port 4: Gyro"
+            self.gyro = GyroSensor(Port.S4, Direction.COUNTERCLOCKWISE)
             
+            self.state = "Port A: Left Motor"
+            self.left_motor = Motor(Port.A)
+
+            self.state = "Port B: Right Motor"
+            self.right_motor = Motor(Port.B)
+
+            self.state = "Port C: Linear Gear"
+            self.linear_attachment_motor = Motor(Port.C)
+
             # self.state = "Port A: Yeeter"
             # self.yeeter_attachment_motor = Motor(Port.A)
-            
-            self.state = "Port B: Left Motor"
-            self.left_motor = Motor(Port.B)
-
-            self.state = "Port C: Right Motor"
-            self.right_motor = Motor(Port.C)
-
-            # self.state = "Port D: Linear Gear"
-            # self.linear_attachment_motor = Motor(Port.D)
 
             self.wheel_diameter = 55
             self.axle_track = 120
@@ -45,27 +45,27 @@ class Robot:
                 self.left_motor, self.right_motor, self.wheel_diameter, self.axle_track)
             self.state = "OK"
         except:
-            brick.display.clear()
-            brick.display.text("Error!", (0, 20))
-            brick.display.text(self.state, (0, 40))    
+            brick.screen.clear()
+            big_font = Font(size=18)
+            brick.screen.set_font(big_font)        
+            brick.screen.draw_text(0, 20, "Error!")
+            brick.screen.draw_text(0, 20, self.state)    
 
     def display_sensor_values(self):
         """Displays sensor values
         """
-        left_gyro_value = "Left Gyro     : {}".format(self.left_gyro.angle())
-        right_gyro_value = "Right Gyro    : {}".format(self.right_gyro.angle())
-        gyro_average_value = "Average Gyro  : {}".format(self.gyro_average())
+        gyro_value = "Gyro    : {}".format(self.gyro.angle())
         left_color_value = "Left Color    : {}".format(self.left_color.reflection())
         right_color_value = "Right Color   : {}".format(self.right_color.reflection())
+        center_color_value = "Center Color   : {}".format(self.center_color.reflection())
 
-        big_font = Font(size=24)
-        ev3.screen.set_font(x`)        
+        big_font = Font(size=18)
+        brick.screen.set_font(big_font)        
         brick.screen.clear()
-        brick.screen.draw_text(left_gyro_value, (0, 20))
-        brick.screen.draw_text(right_gyro_value, (0, 40))
-        brick.screen.draw_text(gyro_average_value, (0, 60)) 
-        brick.screen.draw_text(left_color_value, (0, 80))
-        brick.screen.draw_text(right_color_value, (0, 100))
+        brick.screen.draw_text(0, 20, gyro_value)
+        brick.screen.draw_text(0, 40, left_color_value)
+        brick.screen.draw_text(0, 60, right_color_value)
+        brick.screen.draw_text(0, 80, center_color_value)
 
     def is_ok(self):
         """Tells if all sensors are plugged in
@@ -83,53 +83,36 @@ class Robot:
         """
         beep_counts = range(1, 7) if not is_down else range(6, 0, -1)
         for beep_count in beep_counts:
-            brick.sound.beep(400 * beep_count, 100)
+            brick.speaker.beep(400 * beep_count, 100)
             wait(20)
     
     def drift_check(self):
-        brick.sound.beep(1200 , 500)
+        brick.speaker.beep(1200 , 500)
         wait(100)
-        brick.sound.beep(1200 , 500)
+        brick.speaker.beep(1200 , 500)
         drift = False
-        start_left_gyro = self.left_gyro.angle()
-        start_right_gyro = self.right_gyro.angle()
-        brick.display.clear()
-        brick.display.text("Checking Gyro drift...", (0, 20))
+        start_gyro = self.gyro.angle()
+        brick.screen.clear()
+        big_font = Font(size=18)
+        brick.screen.set_font(big_font)        
+        brick.screen.draw_text(0, 20, "Checking Gyro drift...")
 
         wait(2000)
-        
-        if start_left_gyro != self.left_gyro.angle():
-            brick.display.text("Error!", (0, 40))
-            brick.display.text("Left Gyro drift", (0, 60))
-            drift = True
 
-        if start_right_gyro != self.right_gyro.angle():
-            brick.display.text("Error!", (0, 80))
-            brick.display.text("Right Gyro drift", (0, 100))
+        if start_gyro != self.gyro.angle():
+            brick.screen.draw_text(0, 60, "Error!")
+            brick.screen.draw_text(0, 80, "Gyro drift")
             drift = True
         
         return drift
 
-    def gyro_average(self):
-        """Averages both gyro values and computes the modulo of the average.
-        We use 2 gyros because it is more consistent.
-
-        :return: Averaged gyro value
-        :rtype: Number
-        """
-        left_angle = self.left_gyro.angle()
-        right_angle = self.right_gyro.angle()
-        angle = (left_angle + right_angle)/2
-        return angle % 360
-
     def print_sensor_values(self):
         """Display robot sensor values. For debugging only
         """
-        print("Gyro Average: ", self.gyro_average())
-        print("Left Gyro: ", self.left_gyro.angle())
-        print("Right Gyro: ", self.right_gyro.angle())
+        print("Gyro: ", self.gyro.angle())
         print("Left Color: ", self.left_color.reflection())
         print("Right Color: ", self.right_color.reflection())
+        print("Center Color: ", self.center_color.reflection())
 
     def drive(self, pid, speed, target_angle, duration):
         """Drives the robot using a gyro to a specific angle    
@@ -149,7 +132,7 @@ class Robot:
 
         while pid.clock.time() < duration:
             # Calculate error
-            actual_angle = self.gyro_average()
+            actual_angle = self.gyro.angle()
             error = target_angle - actual_angle
             error = error - (360 * int(error / 180))
 
@@ -188,7 +171,7 @@ class Robot:
 
         while abs(error) > tolerance:
             # Calculate error
-            actual_angle = self.gyro_average()
+            actual_angle = self.gyro.angle()
             error = target_angle - actual_angle
             error = error - (360 * int(error / 180))
 
@@ -233,6 +216,8 @@ class Robot:
                 error = 50 - self.right_color.reflection()
             if which_sensor == LineSensor.LEFT:
                 error = 50 - self.left_color.reflection()
+            if which_sensor == LineSensor.CENTER:
+                error = 50 - self.center_color.reflection()
 
             # Selecting which edge of the line to use
             if which_edge == LineEdge.RIGHT:
@@ -266,11 +251,16 @@ class Robot:
         sensor = 0
         pid.reset()
         target_angle = target_angle % 360
-        sensor = self.left_color if which_sensor == LineSensor.LEFT else self.right_color
+        if which_sensor == LineSensor.LEFT:
+            sensor = self.left_color
+        elif which_sensor == LineSensor.RIGHT:
+            sensor = self.right_color
+        else:
+            sensor = self.center_color
 
         while sensor.reflection() < color_value:
             # Calculate error
-            actual_angle = self.gyro_average()
+            actual_angle = self.gyro.angle()
             error = target_angle - actual_angle
             error = error - (360 * int(error / 180))
 
@@ -284,24 +274,45 @@ class Robot:
         # Stop motors
         self.drive_base.stop(Stop.BRAKE)
         
-    def align(self, speed):
+    def align(self, speed, sensor1, sensor2):
         """Aligns using color sensors on black line
         
         :param speed: The speed the robot moves at
         :type speed: Number
+        :param sensor1: The first sensor the robot uses to align
+        :type sensor1: Enum
+        :param sensor2: The second sensor the robot uses to align
+        :type sensor2: Enum
         """
         self.left_motor.run(speed)
         self.right_motor.run(speed)
+        first_sensor = 0
+        second_sensor = 0
+
+        if sensor1 == LineSensor.LEFT:
+            first_sensor = self.left_color
+        elif sensor1 == LineSensor.RIGHT:
+            first_sensor = self.right_color
+        else:
+            first_sensor = self.center_color
+
+        if sensor2 == LineSensor.LEFT:
+            second_sensor = self.left_color
+        elif sensor2 == LineSensor.RIGHT:
+            second_sensor = self.right_color
+        else:
+            second_sensor = self.center_color
+
         while True:
-            left = False
-            right = False
-            if self.left_color.reflection() <= 10:
+            first_sensor = False
+            second_sensor = False
+            if self.first_sensor.reflection() <= 10:
                 self.left_motor.stop()
-                left = True
-            if self.right_color.reflection() <= 10:
+                first_sensor = True
+            if self.second_sensor.reflection() <= 10:
                 self.right_motor.stop()
-                right = True
-            if left and right == True:
+                second_sensor = True
+            if first_sensor and second_sensor == True:
                 break
 
     def reset_sensors(self, reset_angle = 0):
@@ -310,9 +321,8 @@ class Robot:
         :param reset_angle: inital angle for the gyro, defaults to 0
         :type reset_angle: int, optional
         """
-        # Resets the gyros
-        self.left_gyro.reset_angle(reset_angle)
-        self.right_gyro.reset_angle(reset_angle)
+        # Resets the gyro
+        self.gyro.reset_angle(reset_angle)
 
     def run_linear(self, speed, time, wait = True):
         """Runs linear gear
