@@ -284,36 +284,37 @@ class Robot:
         :param sensor2: The second sensor the robot uses to align
         :type sensor2: Enum
         """
-        self.left_motor.run(speed)
-        self.right_motor.run(speed)
-        first_sensor = 0
-        second_sensor = 0
+        # self.left_motor.run(speed)
+        # self.right_motor.run(speed)
+        # first_sensor = 0
+        # second_sensor = 0
 
-        if sensor1 == LineSensor.LEFT:
-            first_sensor = self.left_color
-        elif sensor1 == LineSensor.RIGHT:
-            first_sensor = self.right_color
-        else:
-            first_sensor = self.center_color
+        # if sensor1 == LineSensor.LEFT:
+        #     first_sensor = self.left_color
+        # elif sensor1 == LineSensor.RIGHT:
+        #     first_sensor = self.right_color
+        # else:
+        #     first_sensor = self.center_color
 
-        if sensor2 == LineSensor.LEFT:
-            second_sensor = self.left_color
-        elif sensor2 == LineSensor.RIGHT:
-            second_sensor = self.right_color
-        else:
-            second_sensor = self.center_color
+        # if sensor2 == LineSensor.LEFT:
+        #     second_sensor = self.left_color
+        # elif sensor2 == LineSensor.RIGHT:
+        #     second_sensor = self.right_color
+        # else:
+        #     second_sensor = self.center_color
 
-        while True:
-            first_sensor = False
-            second_sensor = False
-            if self.first_sensor.reflection() <= 10:
-                self.left_motor.stop()
-                first_sensor = True
-            if self.second_sensor.reflection() <= 10:
-                self.right_motor.stop()
-                second_sensor = True
-            if first_sensor and second_sensor == True:
-                break
+        # while True:
+        #     first = False
+        #     second = False
+        #     if first_sensor.reflection() <= 10:
+        #         self.left_motor.stop()
+        #         first = True
+        #     if second_sensor.reflection() <= 10:
+        #         self.right_motor.stop()
+        #         second = True
+        #     if first and second == True:
+        #         break
+        print("This works")
 
     def reset_sensors(self, reset_angle = 0):
         """Reset the robot's sensor values

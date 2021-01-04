@@ -4,9 +4,6 @@ from pybricks.parameters import Button
 from pybricks.tools import wait, StopWatch
 
 from robot import Robot
-import ida
-import crane
-import design_build
 import robot_test
 import sandbox
 brick = EV3Brick()
@@ -43,18 +40,6 @@ while True:
     brick_buttons = brick.buttons.pressed()
 
     # Check if down button is pressed
-    if Button.DOWN in brick_buttons:
-        # Set mission selected to ida
-        mission = ida
-
-    if Button.UP in brick_buttons:
-        # Set mission selected to crane
-        mission = crane
-
-    if Button.RIGHT in brick_buttons:
-        # Set mission selected to design and build
-        mission = design_build
-
     if Button.LEFT in brick_buttons:
         # Set mission selected to the robot test program
         mission = robot_test

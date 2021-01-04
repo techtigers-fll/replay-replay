@@ -9,8 +9,14 @@ from pybricks.robotics import DriveBase
 from pybricks.media.ev3dev import Font
 
 def run(robot: Robot):
-    line_follow_pid = (2, 0, 0)
-    robot.follow_line(line_follow_pid, 300, 10, LineSensor.CENTER, LineEdge.LEFT)
-    # big_font = Font(size=18)
-    # brick.screen.set_font(big_font)        
-    # brick.screen.draw_text(0, 20, "Checking Gyro drift...")
+    line_follow_pid = Pid(2, 0, 0)
+    drive_pid = Pid(2, 0, 0)
+    turn_pid = Pid(5, 0, 0)
+    robot.reset_sensors()
+
+    # robot.drive(drive_pid, 300, 0, 5000)
+    # robot.follow_line(line_follow_pid, 300, 5000, LineSensor.LEFT, LineEdge.LEFT)
+    # robot.turn(turn_pid, 90)
+    # robot.turn(turn_pid, -90)
+    # robot.stop_on_white(drive_pid, 150, 0, LineSensor.CENTER)
+    robot.align(300, LineSensor.LEFT, LineSensor.CENTER)
