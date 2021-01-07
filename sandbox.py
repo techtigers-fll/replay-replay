@@ -8,15 +8,112 @@ from pybricks.tools import wait, StopWatch
 from pybricks.robotics import DriveBase
 from pybricks.media.ev3dev import Font
 
-def run(robot: Robot):
+def run1(robot: Robot):
     line_follow_pid = Pid(2, 0, 0)
     drive_pid = Pid(2, 0, 0)
     turn_pid = Pid(5, 0, 0)
     robot.reset_sensors()
+    brick = EV3Brick()
 
-    # robot.drive(drive_pid, 300, 0, 5000)
-    # robot.follow_line(line_follow_pid, 300, 5000, LineSensor.LEFT, LineEdge.LEFT)
-    # robot.turn(turn_pid, 90)
-    # robot.turn(turn_pid, -90)
-    # robot.stop_on_white(drive_pid, 150, 0, LineSensor.CENTER)
-    robot.align(300, LineSensor.LEFT, LineSensor.CENTER)
+    def wait_button_press():
+        while not any(brick.buttons.pressed()):
+            wait(10)
+        while any(brick.buttons.pressed()):
+            wait(10)
+        return
+
+    robot.turn(turn_pid, 0)
+    print(robot.gyro.angle())
+    wait_button_press()
+
+    robot.turn(turn_pid, 0)
+    wait(1000)
+    robot.turn(turn_pid, -30)
+    print(robot.gyro.angle())
+    wait_button_press()
+
+    robot.turn(turn_pid, 0)
+    wait(1000)
+    robot.turn(turn_pid, -45)
+    print(robot.gyro.angle())
+    wait_button_press()
+
+    robot.turn(turn_pid, 0)
+    wait(1000)
+    robot.turn(turn_pid, -60)
+    print(robot.gyro.angle())
+    wait_button_press()
+
+    robot.turn(turn_pid, 0)
+    wait(1000)
+    robot.turn(turn_pid, -90)
+    print(robot.gyro.angle())
+    wait_button_press()
+
+    robot.turn(turn_pid, 0)
+    wait(1000)
+    robot.turn(turn_pid, 30)
+    print(robot.gyro.angle())
+    wait_button_press()
+
+    robot.turn(turn_pid, 0)
+    wait(1000)
+    robot.turn(turn_pid, 45)
+    print(robot.gyro.angle())
+    wait_button_press()
+
+    robot.turn(turn_pid, 0)
+    wait(1000)
+    robot.turn(turn_pid, 60)
+    print(robot.gyro.angle())
+    wait_button_press()
+
+    robot.turn(turn_pid, 0)
+    wait(1000)
+    robot.turn(turn_pid, 90)
+    print(robot.gyro.angle())
+    wait_button_press()
+
+    robot.turn(turn_pid, 30)
+    wait(1000)
+    robot.turn(turn_pid, 0)
+    print(robot.gyro.angle())
+    wait_button_press()
+
+    robot.turn(turn_pid, 30)
+    wait(1000)
+    robot.turn(turn_pid, 45)
+    print(robot.gyro.angle())
+    wait_button_press()
+
+    robot.turn(turn_pid, 30)
+    print(robot.gyro.angle())
+    wait_button_press()
+
+    robot.turn(turn_pid, 45)
+    wait(1000)
+    robot.turn(turn_pid, 60)
+    print(robot.gyro.angle())
+    wait_button_press()
+
+    robot.turn(turn_pid, 45)
+    print(robot.gyro.angle())
+    wait_button_press()
+
+    robot.turn(turn_pid, 60)
+    wait(1000)
+    robot.turn(turn_pid, 90)
+    print(robot.gyro.angle())
+    wait_button_press()
+
+    robot.turn(turn_pid, 60)
+    print(robot.gyro.angle())
+    wait_button_press()
+
+def run(robot: Robot):
+    line_follow_pid = Pid(1, 0, 25)
+    drive_pid = Pid(2, 0, 0)
+    turn_pid = Pid(5, 0, 0)
+    robot.reset_sensors()
+
+    robot.follow_line(line_follow_pid, 300, 5000, LineSensor.RIGHT, LineEdge.RIGHT)

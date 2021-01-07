@@ -15,14 +15,14 @@ class Robot:
         """
         try:
 
-            self.state = "Port 1: Left Color"
-            self.left_color = ColorSensor(Port.S1)
+            self.state = "Port 1: Right Color"
+            self.right_color = ColorSensor(Port.S1)
 
             self.state = "Port 2: Center Color"
             self.center_color = ColorSensor(Port.S2)
 
-            self.state = "Port 3: Right Color"
-            self.right_color = ColorSensor(Port.S3)
+            self.state = "Port 3: Left Color"
+            self.left_color = ColorSensor(Port.S3)
 
             self.state = "Port 4: Gyro"
             self.gyro = GyroSensor(Port.S4, Direction.COUNTERCLOCKWISE)
@@ -49,7 +49,7 @@ class Robot:
             big_font = Font(size=18)
             brick.screen.set_font(big_font)        
             brick.screen.draw_text(0, 20, "Error!")
-            brick.screen.draw_text(0, 20, self.state)    
+            brick.screen.draw_text(0, 40, self.state)    
 
     def display_sensor_values(self):
         """Displays sensor values
@@ -284,37 +284,36 @@ class Robot:
         :param sensor2: The second sensor the robot uses to align
         :type sensor2: Enum
         """
-        # self.left_motor.run(speed)
-        # self.right_motor.run(speed)
-        # first_sensor = 0
-        # second_sensor = 0
+        self.left_motor.run(speed)
+        self.right_motor.run(speed)
+        first_sensor = 0
+        second_sensor = 0
 
-        # if sensor1 == LineSensor.LEFT:
-        #     first_sensor = self.left_color
-        # elif sensor1 == LineSensor.RIGHT:
-        #     first_sensor = self.right_color
-        # else:
-        #     first_sensor = self.center_color
+        if sensor1 == LineSensor.LEFT:
+            first_sensor = self.left_color
+        elif sensor1 == LineSensor.RIGHT:
+            first_sensor = self.right_color
+        else:
+            first_sensor = self.center_color
 
-        # if sensor2 == LineSensor.LEFT:
-        #     second_sensor = self.left_color
-        # elif sensor2 == LineSensor.RIGHT:
-        #     second_sensor = self.right_color
-        # else:
-        #     second_sensor = self.center_color
+        if sensor2 == LineSensor.LEFT:
+            second_sensor = self.left_color
+        elif sensor2 == LineSensor.RIGHT:
+            second_sensor = self.right_color
+        else:
+            second_sensor = self.center_color
 
-        # while True:
-        #     first = False
-        #     second = False
-        #     if first_sensor.reflection() <= 10:
-        #         self.left_motor.stop()
-        #         first = True
-        #     if second_sensor.reflection() <= 10:
-        #         self.right_motor.stop()
-        #         second = True
-        #     if first and second == True:
-        #         break
-        print("This works")
+        while True:
+            first = False
+            second = False
+            if first_sensor.reflection() <= 10:
+                self.left_motor.hold()
+                first = True
+            if second_sensor.reflection() <= 10:
+                self.right_motor.hold()
+                second = True
+            if first and second == True:
+                break
 
     def reset_sensors(self, reset_angle = 0):
         """Reset the robot's sensor values

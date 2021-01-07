@@ -8,26 +8,26 @@ import robot_test
 import sandbox
 brick = EV3Brick()
 robot = None
-while True:
+# while True:
     # Create a new robot instance
-    robot = Robot()
+robot = Robot()
 
     # Check if robot is ok
-    if robot.is_ok():
+    # if robot.is_ok():
         # Robot is ok, check drift
-        if not robot.drift_check():
-            robot.beep()
-            break
+        # if not robot.drift_check():
+robot.beep()
+        #     break
 
     # Robot not ok, wait for user to fix
-    robot.beep(True)
+    # robot.beep(True)
 
-    # Wait for button to be pressed and released
-    while not any(brick.buttons.pressed()):
-        wait(10)
+    # # Wait for button to be pressed and released
+    # while not any(brick.buttons.pressed()):
+    #     wait(10)
 
-    while any(brick.buttons.pressed()):
-        wait(10)
+    # while any(brick.buttons.pressed()):
+    #     wait(10)
 
 # Initialize mission
 mission = None
