@@ -4,8 +4,8 @@ from pybricks.parameters import Button
 from pybricks.tools import wait, StopWatch
 
 from robot import Robot
-import robot_test
 import sandbox
+import yellow
 brick = EV3Brick()
 robot = None
 # while True:
@@ -33,20 +33,20 @@ robot.beep()
 mission = None
 display_counter = 0
 while True:
-    if display_counter == 0:
-        robot.display_sensor_values()
-    display_counter = (display_counter + 1) % 500
+    # if display_counter == 0:
+    #     robot.display_sensor_values()
+    # display_counter = (display_counter + 1) % 500
 
     brick_buttons = brick.buttons.pressed()
 
-    # Check if down button is pressed
-    if Button.LEFT in brick_buttons:
-        # Set mission selected to the robot test program
-        mission = robot_test
 
     if Button.CENTER in brick_buttons:
         # Set mission selected to the sandbox program
         mission = sandbox
+
+    if Button.UP in brick_buttons:
+        # Set mission selected to the sandbox program
+        mission = yellow
 
     # Check when no buttons are pressed
     if len(brick_buttons) == 0:

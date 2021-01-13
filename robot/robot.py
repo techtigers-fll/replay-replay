@@ -15,17 +15,17 @@ class Robot:
         """
         try:
 
-            self.state = "Port 1: Right Color"
-            self.right_color = ColorSensor(Port.S1)
+            # self.state = "Port 1: Right Color"
+            # self.right_color = ColorSensor(Port.S1)
 
-            self.state = "Port 2: Center Color"
-            self.center_color = ColorSensor(Port.S2)
+            # self.state = "Port 2: Center Color"
+            # self.center_color = ColorSensor(Port.S2)
 
-            self.state = "Port 3: Left Color"
-            self.left_color = ColorSensor(Port.S3)
+            # self.state = "Port 3: Left Color"
+            # self.left_color = ColorSensor(Port.S3)
 
-            self.state = "Port 4: Gyro"
-            self.gyro = GyroSensor(Port.S4, Direction.COUNTERCLOCKWISE)
+            # self.state = "Port 4: Gyro"
+            # self.gyro = GyroSensor(Port.S4, Direction.COUNTERCLOCKWISE)
             
             self.state = "Port A: Left Motor"
             self.left_motor = Motor(Port.A)
@@ -40,7 +40,7 @@ class Robot:
             # self.yeeter_attachment_motor = Motor(Port.A)
 
             self.wheel_diameter = 55
-            self.axle_track = 120
+            self.axle_track = 123
             self.drive_base = DriveBase(
                 self.left_motor, self.right_motor, self.wheel_diameter, self.axle_track)
             self.state = "OK"
@@ -348,30 +348,32 @@ class Robot:
         """
         self.yeeter_attachment_motor.run_time(speed, time, Stop.BRAKE, wait)
 
-    def move_yeeter(self, speed, target_angle, wait = True):
+    def move_yeeter(self, speed, rotations, wait = True):
         """Will calculate the ratio of the gears and then move the yeeter
          to a specific angle
         
         :param speed: The speed the yeeter moves at
         :type speed: Number
-        :param angle: How much the yeeter moves by in degrees
-        :type angle: Number
+        :param rotations: How much the yeeter moves by in rotations
+        :type rotations: Number
         :param wait: Wait for action to complete before next step
         :type wait: Boolean
         """
+        target_angle = rotations*360
         self.yeeter_attachment_motor.run_angle(speed, target_angle * 5, Stop.BRAKE, wait)
 
-    def move_linear(self, speed, target_angle, wait = True):
+    def move_linear(self, speed, rotations, wait = True):
         """Will calculate the ratio of the gears and then move the linear gear
          to a specific angle
         
         :param speed: The speed the linear gear moves at
         :type speed: Number
-        :param angle: How much the linear gear moves by in degrees
-        :type angle: Number
+        :param rotations: How much the linear gear moves by in rotations
+        :type rotations: Number
         :param wait: Wait for action to complete before next step
         :type wait: Boolean
         """
+        target_angle = rotations*360
         self.linear_attachment_motor.run_angle(speed, target_angle, Stop.BRAKE, wait)
 
 

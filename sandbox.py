@@ -111,9 +111,6 @@ def run1(robot: Robot):
     wait_button_press()
 
 def run(robot: Robot):
-    line_follow_pid = Pid(1, 0, 25)
-    drive_pid = Pid(2, 0, 0)
-    turn_pid = Pid(5, 0, 0)
-    robot.reset_sensors()
-
-    robot.follow_line(line_follow_pid, 300, 5000, LineSensor.RIGHT, LineEdge.RIGHT)
+        linear_attachment_motor = Motor(Port.C)
+        linear_attachment_motor.run_time(-1000, 3000, Stop.BRAKE)
+        linear_attachment_motor.run_time(1000, 3000, Stop.BRAKE)
