@@ -15,17 +15,17 @@ class Robot:
         """
         try:
 
-            # self.state = "Port 1: Right Color"
-            # self.right_color = ColorSensor(Port.S1)
+            self.state = "Port 1: Right Color"
+            self.right_color = ColorSensor(Port.S1)
 
-            # self.state = "Port 2: Center Color"
-            # self.center_color = ColorSensor(Port.S2)
+            self.state = "Port 2: Center Color"
+            self.center_color = ColorSensor(Port.S2)
 
-            # self.state = "Port 3: Left Color"
-            # self.left_color = ColorSensor(Port.S3)
+            self.state = "Port 3: Left Color"
+            self.left_color = ColorSensor(Port.S3)
 
-            # self.state = "Port 4: Gyro"
-            # self.gyro = GyroSensor(Port.S4, Direction.COUNTERCLOCKWISE)
+            self.state = "Port 4: Gyro"
+            self.gyro = GyroSensor(Port.S4, Direction.COUNTERCLOCKWISE)
             
             self.state = "Port A: Left Motor"
             self.left_motor = Motor(Port.A)

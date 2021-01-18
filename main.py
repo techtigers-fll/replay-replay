@@ -9,33 +9,33 @@ import yellow
 brick = EV3Brick()
 robot = None
 # while True:
-    # Create a new robot instance
+#     # Create a new robot instance
 robot = Robot()
 
-    # Check if robot is ok
-    # if robot.is_ok():
-        # Robot is ok, check drift
-        # if not robot.drift_check():
+#     # Check if robot is ok
+#     if robot.is_ok():
+#         # Robot is ok, check drift
+#         if not robot.drift_check():
 robot.beep()
-        #     break
+#             break
 
-    # Robot not ok, wait for user to fix
-    # robot.beep(True)
+#     # Robot not ok, wait for user to fix
+#     robot.beep(True)
 
-    # # Wait for button to be pressed and released
-    # while not any(brick.buttons.pressed()):
-    #     wait(10)
+#     # Wait for button to be pressed and released
+#     while not any(brick.buttons.pressed()):
+#         wait(10)
 
-    # while any(brick.buttons.pressed()):
-    #     wait(10)
+#     while any(brick.buttons.pressed()):
+#         wait(10)
 
 # Initialize mission
 mission = None
 display_counter = 0
 while True:
-    # if display_counter == 0:
-    #     robot.display_sensor_values()
-    # display_counter = (display_counter + 1) % 500
+    if display_counter == 0:
+        robot.display_sensor_values()
+    display_counter = (display_counter + 1) % 500
 
     brick_buttons = brick.buttons.pressed()
 
