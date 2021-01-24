@@ -9,15 +9,20 @@ from pybricks.robotics import DriveBase
 from pybricks.media.ev3dev import Font
 
 def run(robot: Robot):
-    straight_line_follow_pid = Pid(1, 0, 0)
-    sharp_line_follow_pid = Pid(5, 0, 0)
-    turn_pid = Pid(10, 0, 5)
-    slow_turn_pid = Pid(3, 0, 0)
-    drive_pid = Pid(1, 0, 0)
     robot.reset_sensors()
 
+    while True:
+        brick_buttons = brick.buttons.pressed()
 
-    angle = robot.linear_attachment_motor.angle()
-    stall = robot.linear_attachment_motor.run_until_stalled(-600, Stop.BRAKE, 90) 
-    robot.move_linear(600, 2) 
-    print((abs(stall - angle))/360)
+        if Button.UP in brick_buttons:
+            while True:
+                if len(brick_buttons) == 0:
+                    break
+            robot.move_linear(-300, 1)
+
+        if Button.DOWN in brick_buttons:
+            while True:
+                if len(brick_buttons) == 0:
+                    break
+            robot.move_linear(-300, 1)
+

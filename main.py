@@ -6,6 +6,7 @@ from pybricks.tools import wait, StopWatch
 from robot import Robot
 import sandbox
 import black
+import attachment_runner
 brick = EV3Brick()
 robot = None
 # while True:
@@ -47,6 +48,10 @@ while True:
     if Button.UP in brick_buttons:
         # Set mission selected to the sandbox program
         mission = black
+
+    if Button.DOWN in brick_buttons:
+        # Set mission selected to the sandbox program
+        mission = attachment_runner
 
     # Check when no buttons are pressed
     if len(brick_buttons) == 0:
