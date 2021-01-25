@@ -16,8 +16,4 @@ def run(robot: Robot):
     drive_pid = Pid(1, 0, 0)
     robot.reset_sensors()
 
-
-    angle = robot.linear_attachment_motor.angle()
-    stall = robot.linear_attachment_motor.run_until_stalled(-600, Stop.BRAKE, 90) 
-    robot.move_linear(600, 2) 
-    print((abs(stall - angle))/360)
+    robot.drive(drive_pid, -400, 0, 600)
