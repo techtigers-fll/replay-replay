@@ -114,6 +114,13 @@ class Robot:
         print("Right Color: ", self.right_color.reflection())
         print("Center Color: ", self.center_color.reflection())
 
+    def stop_motors(self):
+        """ Stops all motors
+        """
+        self.left_motor.stop(Stop.BRAKE)
+        self.right_motor.stop(Stop.BRAKE)
+        self.linear_attachment_motor.stop(Stop.BRAKE)
+
     def drive(self, pid, speed, target_angle, duration):
         """Drives the robot using a gyro to a specific angle    
 
@@ -334,6 +341,7 @@ class Robot:
         :param wait: Wait for action to complete before next step
         :type wait: Boolean
         """
+        self.stop_motors()
         self.linear_attachment_motor.run_time(speed, time, Stop.BRAKE, wait)
 
     def run_yeeter(self, speed, time, wait = True):
@@ -346,6 +354,7 @@ class Robot:
         :param wait: Wait for action to complete before next step
         :type wait: Boolean
         """
+        self.stop_motors()
         self.yeeter_attachment_motor.run_time(speed, time, Stop.BRAKE, wait)
 
     def move_yeeter(self, speed, rotations, wait = True):
@@ -359,6 +368,7 @@ class Robot:
         :param wait: Wait for action to complete before next step
         :type wait: Boolean
         """
+        self.stop_motors()
         target_angle = rotations*360
         self.yeeter_attachment_motor.run_angle(speed, target_angle * 5, Stop.BRAKE, wait)
 
@@ -373,6 +383,7 @@ class Robot:
         :param wait: Wait for action to complete before next step
         :type wait: Boolean
         """
+        self.stop_motors()
         target_angle = rotations*360
         self.linear_attachment_motor.run_angle(speed, target_angle, Stop.BRAKE, wait)
 
