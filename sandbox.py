@@ -16,24 +16,10 @@ def run(robot: Robot):
     drive_pid = Pid(1, 0, 0)
     robot.reset_sensors()
 
-    # robot.move_linear(800, 0.5)
-    # robot.move_linear(800, 5.65, False)
-
-    # robot.drive(drive_pid, -400, 0, 100)
-    # robot.turn(slow_turn_pid, 90)
-    # robot.drive(drive_pid, 400, 90, 1500)
-
-    # robot.follow_line(straight_line_follow_pid, 200, 1400, LineSensor.RIGHT, LineEdge.LEFT)
-    # robot.align(100, LineSensor.LEFT, LineSensor.CENTER)
-    robot.turn(turn_pid, -20)
+    robot.turn(turn_pid, 180)
+    robot.turn(turn_pid, 180)
     robot.beep()
     robot.print_sensor_values()
-    robot.drive(drive_pid, 100, -20, 1700)
+    robot.drive(drive_pid, 100, -2, 1700)
 
-    # robot.follow_line(straight_line_follow_pid, 200, 2500, LineSensor.RIGHT, LineEdge.RIGHT)
-    # robot.drive(drive_pid, -200, 0, 500)
-    # robot.turn(turn_pid, -15)
-    # robot.drive(drive_pid, 200, 0, 300)
-    # robot.move_linear(-800, 4.9)
-    # robot.move_linear(800, 4.9)
     robot.stop_motors()

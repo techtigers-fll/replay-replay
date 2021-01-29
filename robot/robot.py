@@ -135,12 +135,12 @@ class Robot:
         """
         # Inititialize values
         pid.reset()
-        target_angle = target_angle % 360
 
         while pid.clock.time() < duration:
-            # Calculate error
+            # Calculatr error
+            
             actual_angle = self.gyro.angle()
-            error = target_angle - actual_angle
+            error = (target_angle - actual_angle) % 360
             error = error - (360 * int(error / 180))
 
             # Calculate steering output
@@ -172,14 +172,13 @@ class Robot:
         # Inititialize values
         pid.reset()
         
-        target_angle = target_angle % 360
         error = tolerance + 1
         min_speed = 50
 
         while abs(error) > tolerance:
             # Calculate error
             actual_angle = self.gyro.angle()
-            error = target_angle - actual_angle
+            error = (target_angle - actual_angle) % 360
             error = error - (360 * int(error / 180))
 
             # Call Pid compute_steering
@@ -268,7 +267,7 @@ class Robot:
         while sensor.reflection() < color_value:
             # Calculate error
             actual_angle = self.gyro.angle()
-            error = target_angle - actual_angle
+            error = (target_angle - actual_angle) % 360
             error = error - (360 * int(error / 180))
 
             # Calculate steering output
