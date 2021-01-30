@@ -10,19 +10,48 @@ from pybricks.media.ev3dev import Font
 
 def run(robot: Robot):
     robot.reset_sensors()
-
+    brick = EV3Brick()
+    attachment_motor = 'linear gear'
     while True:
         brick_buttons = brick.buttons.pressed()
-
         if Button.UP in brick_buttons:
             while True:
                 if len(brick_buttons) == 0:
                     break
-            robot.move_linear(-300, 1)
+            brick.scren.clear()
+            brick.screen.draw_text(0,20, "Moving " + attachment_motor + " gear up")
+            robot.move_linear(20, 1)
 
         if Button.DOWN in brick_buttons:
             while True:
                 if len(brick_buttons) == 0:
                     break
-            robot.move_linear(-300, 1)
+            brick.screen.clear()
+            brick.screen.draw_text(0,20, "Moving linear gear down")
+            robot.move_linear(-20, 1)
+        if Button.RIGHT in brick_buttons:
+            while True: 
+                if len(brick_buttons) == 0:
+                    break
+            brick.screen.clear()
+            brick.screen.draw_text(0,20, "Switching to Block Dropper")
+            if Button.UP in brick_buttons:
+                while True:
+                    if len(brick_buttons) == 0:
+                        break
+                brick.screen.clear()
+                brick.screen.draw_text(0,20, "Moving Block Dropper")
+            if Button.DOWN in brick_buttons:
+                while True:
+                    if len(brick_buttons) == 0:
+                        break
+                brick.screen.clear()
+                brick.screen.draw_text(0,20, "Moving Block Dropper")
+
+
+                
+
+
+            
+
 
