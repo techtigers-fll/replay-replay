@@ -5,7 +5,8 @@ from pybricks.tools import wait, StopWatch
 
 from robot import Robot
 import sandbox
-import black
+import basketball
+import bench
 import attachment_runner
 brick = EV3Brick()
 robot = None
@@ -47,7 +48,11 @@ while True:
 
     if Button.UP in brick_buttons:
         # Set mission selected to the sandbox program
-        mission = black
+        mission = basketball
+
+    if Button.LEFT in brick_buttons:
+        # Set mission selected to the sandbox program
+        mission = bench
 
     if Button.DOWN in brick_buttons:
         # Set mission selected to the sandbox program
