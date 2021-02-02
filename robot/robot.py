@@ -239,8 +239,8 @@ class Robot:
 
         self.drive_base.stop(Stop.BRAKE)
 
-    def stop_on_white(self, pid, speed, target_angle, which_sensor, color_value = 90):
-        """ Gyro drives until given color sensor is on black
+    def stop_on_white(self, pid, speed, target_angle, which_sensor, color_value = 80):
+        """ Gyro drives until given color sensor is on white
 
         :param pid: PID setting of drive
         :type pid: Number
