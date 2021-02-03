@@ -21,7 +21,7 @@ def run(robot: Robot):
 
     robot.stop_on_white(drive_pid, -100, 0, LineSensor.CENTER)
     robot.turn(turn_pid, -40)
-    robot.move_linear(-800, 1.2, False)
+    robot.move_linear(-800, 1.25, False)
     robot.drive(drive_pid, 200, -40, 1000)
 
     robot.drive(drive_pid, 150, -40, 1000)
