@@ -280,6 +280,47 @@ class Robot:
         # Stop motors
         self.drive_base.stop(Stop.BRAKE)
         
+    def stop_on_black(self, pid, speed, target_angle, which_sensor, color_value = 15):
+        """ Gyro drives until given color sensor is on black
+
+        :param pid: PID setting of drive
+        :type pid: Number
+        :param speed: The speed the robot moves at
+        :type speed: Number
+        :param target_angle: the angle the gyro drives at
+        :type target_angle: 
+        :param which_sensor: Chooses which color sensor to use
+        :type which_sensor: Enum
+        :param color_value: The value of color that the robot stops at
+        :type color_value: Number
+        """
+        # Inititialize values
+        sensor = 0
+        pid.reset()
+        target_angle = target_angle % 360
+        if which_sensor == LineSensor.LEFT:
+            sensor = self.left_color
+        elif which_sensor == LineSensor.RIGHT:
+            sensor = self.right_color
+        else:
+            sensor = self.center_color
+
+        while sensor.reflection() > color_value:
+            # Calculate error
+            actual_angle = self.gyro.angle()
+            error = (target_angle - actual_angle) % 360
+            error = error - (360 * int(error / 180))
+
+            # Calculate steering output
+            steering = pid.compute_steering(error)
+
+            # Drive the motors
+            self.drive_base.drive(speed, steering)
+            self.print_sensor_values
+
+        # Stop motors
+        self.drive_base.stop(Stop.BRAKE)
+
     def align(self, speed, sensor1, sensor2):
         """Aligns using color sensors on black line
         

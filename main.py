@@ -5,6 +5,7 @@ from pybricks.tools import wait, StopWatch
 
 from robot import Robot
 import sandbox
+import test
 import basketball
 import bench
 import attachment_runner
@@ -45,6 +46,10 @@ while True:
     if Button.CENTER in brick_buttons:
         # Set mission selected to the sandbox program
         mission = sandbox
+
+    if Button.RIGHT in brick_buttons:
+        # Set mission selected to the sandbox program
+        mission = test
 
     if Button.UP in brick_buttons:
         # Set mission selected to the sandbox program

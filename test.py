@@ -18,8 +18,6 @@ def run(robot: Robot):
     robot.reset_sensors()
 
     robot.linear_attachment_motor.run_until_stalled(200, Stop.BRAKE, 20)
-    robot.drive(drive_pid, 400, 3, 3700)
-
     robot.stop_on_white(drive_pid, -100, 0, LineSensor.CENTER)
     robot.drive(drive_pid, -100, 0, 800)
     robot.turn(turn_pid, -35)
@@ -33,30 +31,4 @@ def run(robot: Robot):
     robot.move_linear(400, 0.3, False)
     robot.drive(drive_pid, -150, -35, 1300)
     robot.drive(drive_pid, 400, -35, 500)
-    # robot.stop_on_black(drive_pid, -100, -40, LineSensor.RIGHT)
-    # robot.beep()
-    # robot.stop_on_white(drive_pid, 100, -40, LineSensor.RIGHT)
-    # robot.drive(drive_pid, 100, -40, 200)
-    # robot.beep()
-
-    # robot.turn(turn_pid, 0)
-    # robot.follow_line(straight_line_follow_pid, 200, 2000, LineSensor.RIGHT, LineEdge.RIGHT)
-    # robot.turn(turn_pid, 0)
-    # robot.align(100, LineSensor.LEFT, LineSensor.CENTER)
-    # robot.drive(sharp_drive_pid, 800, 10, 750)
-    # robot.right_motor.run_time(800, 3000, Stop.BRAKE)
-
-    # robot.drive(drive_pid, -200, 0, 500)
-    # robot.stop_on_white(drive_pid, -50, 0, LineSensor.LEFT)
-    # robot.turn(turn_pid, -90) 
-    # robot.drive(drive_pid, -200, -90, 1200)
-    # robot.reset_sensors(-90)
-
-    # robot.drive(drive_pid, 400, -90, 1200)
-
-    # robot.move_linear(-800, 0.7)
-    # robot.turn(slow_turn_pid, 20)
-    # robot.drive(drive_pid, 200, 20, 300)
-    # robot.move_linear(800, 0.5) # origianlly 0.6
-    # robot.drive(sharp_drive_pid, -100, 20, 1400)
 
