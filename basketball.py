@@ -8,11 +8,15 @@ def run(robot: Robot):
     drive_pid = Pid(1, 0, 0)
     robot.reset_sensors()
 
-    robot.drive(drive_pid, 400, 0, 375) 
+    robot.drive(drive_pid, 400, 0, 450) 
     robot.turn(turn_pid, 55)
-    robot.drive(drive_pid, 400, 55, 725) 
+    robot.drive(drive_pid, 400, 55, 700) 
+    robot.stop_on_black(drive_pid, 100, 55, LineSensor.RIGHT)
+    robot.drive(drive_pid, -50, 55, 200)
     robot.turn(turn_pid, 0)
-    robot.follow_line(straight_line_follow_pid, 400, 1600, LineSensor.RIGHT, LineEdge.RIGHT)
+    # robot.follow_line(straight_line_follow_pid, 400, 1600, LineSensor.RIGHT, LineEdge.RIGHT)
+    robot.drive(drive_pid, 400, 0, 1600)
+
     robot.move_linear(-800, 6.15)
     robot.move_linear(800, 5.1)
     robot.move_linear(-800, 5.1)

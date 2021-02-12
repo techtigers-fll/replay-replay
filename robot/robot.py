@@ -36,8 +36,8 @@ class Robot:
             self.state = "Port C: Linear Gear"
             self.linear_attachment_motor = Motor(Port.C)
 
-            # self.state = "Port A: Yeeter"
-            # self.yeeter_attachment_motor = Motor(Port.A)
+            self.state = "Port A: Block Dropper"
+            self.dropper_attachment_motor = Motor(Port.D)
 
             self.wheel_diameter = 55
             self.axle_track = 123
