@@ -384,34 +384,6 @@ class Robot:
         self.stop_motors()
         self.linear_attachment_motor.run_time(speed, time, Stop.BRAKE, wait)
 
-    def run_yeeter(self, speed, time, wait = True):
-        """Runs yeeter
-        
-        :param speed: The speed the yeeter moves at
-        :type speed: Number
-        :param time: How long the yeeter runs for
-        :type time: Number
-        :param wait: Wait for action to complete before next step
-        :type wait: Boolean
-        """
-        self.stop_motors()
-        self.yeeter_attachment_motor.run_time(speed, time, Stop.BRAKE, wait)
-
-    def move_yeeter(self, speed, rotations, wait = True):
-        """Will calculate the ratio of the gears and then move the yeeter
-         to a specific angle
-        
-        :param speed: The speed the yeeter moves at
-        :type speed: Number
-        :param rotations: How much the yeeter moves by in rotations
-        :type rotations: Number
-        :param wait: Wait for action to complete before next step
-        :type wait: Boolean
-        """
-        self.stop_motors()
-        target_angle = rotations*360
-        self.yeeter_attachment_motor.run_angle(speed, target_angle * 5, Stop.BRAKE, wait)
-
     def move_linear(self, speed, rotations, wait = True):
         """Will calculate the ratio of the gears and then move the linear gear
          to a specific angle
@@ -427,18 +399,29 @@ class Robot:
         target_angle = rotations*360
         self.linear_attachment_motor.run_angle(speed, target_angle, Stop.BRAKE, wait)
 
-
-    def pulse_yeeter(self, duration, count):
-        """Pulses yeeter up and down a specific amount of times
+    def run_dropper(self, speed, time, wait = True):
+        """Runs block dropper
         
-        :param duration: How long each pulse lasts
-        :type duration: Number
-        :param count: Amount of pulses
-        :type count: Number
+        :param speed: The speed the yeeter moves at
+        :type speed: Number
+        :param time: How long the yeeter runs for
+        :type time: Number
+        :param wait: Wait for action to complete before next step
+        :type wait: Boolean
         """
-        counter = 1
-        while counter <= count:
-            self.run_yeeter(2000, duration)
-            self.run_yeeter(-4000, duration)
-            counter += 1
-            wait(200)
+        self.stop_motors()
+        self.dropper_attachment_motor.run_time(speed, time, Stop.BRAKE, wait)
+
+    def move_dropper(self, speed, degrees, wait = True):
+        """Will calculate the ratio of the gears and then move the block dropper
+         to a specific angle
+        
+        :param speed: The speed the yeeter moves at
+        :type speed: Number
+        :param degrees: How much the yeeter moves by in degrees
+        :type degrees: Number
+        :param wait: Wait for action to complete before next step
+        :type wait: Boolean
+        """
+        self.stop_motors()
+        self.dropper_attachment_motor.run_angle(speed, degrees, Stop.BRAKE, wait)
