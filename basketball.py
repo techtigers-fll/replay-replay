@@ -1,6 +1,10 @@
 from robot import Pid, Robot, LineEdge, LineSensor
 from pybricks.tools import wait
+from pybricks.parameters import Button
+from pybricks.hubs import EV3Brick
+from pybricks.parameters import Stop
 
+brick = EV3Brick()
 def run(robot: Robot):
     straight_line_follow_pid = Pid(1, 0, 5)
     sharp_line_follow_pid = Pid(5, 0, 0)
@@ -17,7 +21,7 @@ def run(robot: Robot):
     robot.turn(turn_pid, 0)
     robot.drive(drive_pid, 400, 0, 1600)
 
-    robot.move_linear(-800, 6.8)
+    robot.move_linear(-800, 6.7)
     robot.move_linear(800, 6)
     robot.move_linear(-800, 6)
     robot.move_linear(800, 0.5)
