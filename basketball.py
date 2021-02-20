@@ -13,8 +13,6 @@ def run(robot: Robot):
     drive_pid = Pid(1, 0, 0)
     robot.reset_sensors()
 
-
-
     robot.drive(drive_pid, 400, 0, 450) 
     robot.turn(turn_pid, 55)
     robot.drive(drive_pid, 400, 55, 900) 
@@ -25,9 +23,10 @@ def run(robot: Robot):
 
     robot.move_linear(-800, 6.55)
     robot.move_linear(800, 6)
-    robot.move_linear(-800, 6)
+    robot.move_linear(-800, 6.1)
     robot.move_linear(800, 0.5)
     robot.move_linear(800, 4.65, False)
+    
 
     robot.drive(drive_pid, -400, 0, 250)
     robot.turn(slow_turn_pid, 90)
@@ -37,7 +36,7 @@ def run(robot: Robot):
     robot.turn(turn_pid, 90)
     robot.align(200, LineSensor.LEFT, LineSensor.CENTER)
     robot.turn(turn_pid, 60)
-    robot.drive(drive_pid, 100, 60, 1200)
+    robot.drive(drive_pid, 100, 60, 1000)
     robot.drive(drive_pid, -100, 60, 100)
     robot.move_linear(-800, 2.5)
     robot.move_linear(800,0.5)
@@ -49,13 +48,12 @@ def run(robot: Robot):
     
     wait(500)
     robot.drive(drive_pid, -100, 0, 300)
-    wait(300)
     robot.stop_on_black(drive_pid, -200, 0, LineSensor.CENTER) 
     robot.move_linear(800, 2, False)
     robot.drive(drive_pid, 200, 0, 300)
-    robot.turn(turn_pid, -48)
+    robot.turn(turn_pid, -45)
 
-    robot.drive(drive_pid, 200, -48, 1700)
+    robot.drive(drive_pid, 200, -45, 1700)
     robot.turn(slow_turn_pid, -135)
     robot.drive(drive_pid, 200, -135, 1700)
     robot.turn(slow_turn_pid, -65)
@@ -63,7 +61,3 @@ def run(robot: Robot):
     robot.drive(drive_pid, 200, -65, 1100)
     robot.turn(slow_turn_pid, -90)
     robot.drive(drive_pid, 200, -90, 1800)
-    
-    
-
-     
