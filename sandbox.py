@@ -58,6 +58,7 @@ def run(robot: Robot):
     drive_pid = Pid(1, 0, 0)
     sharp_drive_pid = Pid(4, 0, 0)
     robot.reset_sensors()
+    
 
     robot.linear_attachment_motor.run_until_stalled(200, Stop.BRAKE, 20)
     robot.drive(drive_pid, 400, 3, 3700)
@@ -83,7 +84,7 @@ def run(robot: Robot):
     robot.move_linear(-800, 1.3, False)
     robot.drive(drive_pid, 200, -30, 800)
     robot.drive(drive_pid, 150, -35, 900)
-    robot.drive(drive_pid, -150, -35, 275)
+    robot.drive(drive_pid, -150, -35, 370)
 
     robot.move_linear(200, 0.68)
     robot.drive(drive_pid, -150, -35, 200)
@@ -98,8 +99,11 @@ def run(robot: Robot):
     robot.follow_line(straight_line_follow_pid, 200, 2000, LineSensor.RIGHT, LineEdge.RIGHT)
     robot.turn(turn_pid, 0)
     robot.align(100, LineSensor.LEFT, LineSensor.CENTER)
+    robot.turn(turn_pid, 2)
 
-    robot.drive(drive_pid, 300, 0, 1000)
+    #Treadmill mission
+    #Changed drive angle because of new battery
+    robot.drive(drive_pid, 300, 2, 1000)
     robot.right_motor.run_time(800, 3500, Stop.BRAKE)
 
     robot.drive(drive_pid,-200, 0, 500)
@@ -107,18 +111,17 @@ def run(robot: Robot):
     robot.turn(turn_pid, -90) 
     robot.drive(drive_pid, -200, -90, 1200)
     robot.reset_sensors(-90)
-    # robot.move_linear(-800, 0.7)
 
 
     robot.drive(drive_pid, 400, -90, 1000) # 1200 for full run
 
     robot.move_linear(-800, 0.5, False)
-    robot.turn(slow_turn_pid, 20)
-    robot.drive(drive_pid, 200, 20, 375)
+    robot.turn(slow_turn_pid, 10)
+    robot.drive(drive_pid, 200, 10, 300)
     robot.move_linear(800, 0.5)
-    robot.drive(sharp_drive_pid, -100, 20, 1300)
+    robot.drive(sharp_drive_pid, -100, 10, 1300)
     robot.move_linear(-800, 0.5)
-    robot.drive(drive_pid, -200, 20, 50)
+    robot.drive(drive_pid, -200, 10, 50)
     
     robot.move_linear(-600, 5.8, False)
     robot.turn(slow_turn_pid, -90)
@@ -126,23 +129,36 @@ def run(robot: Robot):
     robot.align(200, LineSensor.LEFT, LineSensor.CENTER)
     robot.drive(drive_pid, 400, -90, 700)
     robot.turn(slow_turn_pid, 0)
-    robot.drive(drive_pid, 200, 0, 100)
+    robot.drive(drive_pid, 200, 0, 150)
     robot.linear_attachment_motor.run_until_stalled(-200, Stop.BRAKE, 20)
     robot.move_linear(600, 5)
     robot.drive(drive_pid, -400, 0, 300)
     robot.drive(drive_pid, 400, 0, 800)
     
-    wait(1)
-    robot.drive(drive_pid, -400, 0, 300)
-    # robot.turn(slow_turn_pid, 90)
+    wait(100)
+    robot.drive(sharp_drive_pid, -400, 0, 375) # 300 when set up from weight machine
+    robot.turn(slow_turn_pid, 90)
+    robot.drive(sharp_drive_pid, 200, 90, 600)
+    robot.follow_line(straight_line_follow_pid, 100, 700, LineSensor.RIGHT, LineEdge.LEFT)
+    robot.stop_on_white(drive_pid, 150, 90, LineSensor.LEFT)
+    robot.move_linear(-600, 0.5, False)
+    robot.turn(slow_turn_pid, 125)
 
-    # robot.move_linear(-600, 0.5, False)
-    # robot.drive(drive_pid, 200, 110, 1800)
+    robot.drive(drive_pid, 200, 125, 900)
 
-    # robot.drive(drive_pid, -200, 110, 300)
-    # robot.move_linear(400, 0.9)
-    # robot.drive(drive_pid, -200, 110, 1500)
-    # robot.turn(slow_turn_pid, 100)
-    # robot.drive(drive_pid, 200, 100, 1700)
-    # robot.move_dropper(100, 45)
-    # robot.move_linear(400, 1.15)
+    robot.drive(drive_pid, -200, 125, 300)
+    robot.move_linear(400, 0.85)
+    robot.drive(drive_pid, -400, 125, 600)
+    robot.turn(slow_turn_pid, 110)
+    robot.drive(drive_pid, 200, 110, 1500)
+    robot.move_dropper(100, 45)
+
+    robot.drive(drive_pid, -200, 110, 600)
+    robot.stop_on_white(drive_pid, -150, 110, LineSensor.LEFT)
+    robot.turn(slow_turn_pid, 180)
+    robot.follow_line(straight_line_follow_pid, 200, 2000, LineSensor.LEFT, LineEdge.LEFT)
+    robot.stop_on_black(sharp_drive_pid, 150, 180, LineSensor.RIGHT)
+
+    robot.turn(slow_turn_pid, -130)
+    robot.drive(drive_pid, 400, -130, 800)
+
