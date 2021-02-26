@@ -8,6 +8,7 @@ import sandbox
 import test
 import basketball
 import bench
+import step_counter
 import attachment_runner
 brick = EV3Brick()
 robot = None
@@ -49,7 +50,7 @@ while True:
 
     if Button.RIGHT in brick_buttons:
         # Set mission selected to the sandbox program
-        mission = test
+        mission = step_counter
 
     if Button.UP in brick_buttons:
         # Set mission selected to the sandbox program
