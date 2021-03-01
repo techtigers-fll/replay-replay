@@ -90,14 +90,14 @@ def run(robot: Robot):
     # Doing weight machine
     robot.move_linear(-600, 5.8, False)
     robot.turn(slow_turn_pid, -90)
-    robot.drive(drive_pid, 400, -90, 1250)
+    robot.drive(drive_pid, 400, -90, 1450)
     robot.drive(drive_pid, 200, -90, 1200)
     robot.reset_sensors(-90)
     robot.drive(drive_pid, -200, -90, 500)
     robot.turn(slow_turn_pid, 0)
     robot.drive(drive_pid, 200, 0, 150)
     robot.linear_attachment_motor.run_until_stalled(-200, Stop.BRAKE, 20)
-    robot.move_linear(800, 5)
+    robot.move_linear(600, 5)
     robot.drive(drive_pid, -400, 0, 300)
     robot.drive(drive_pid, 400, 0, 800)
     
