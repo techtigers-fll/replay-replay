@@ -17,5 +17,6 @@ def run(robot: Robot):
     sharp_drive_pid = Pid(4, 0, 0)
     robot.reset_sensors()
 
-    robot.start_left_drive()
+    robot.drive(drive_pid, 200, 0, 3000)
+    robot.move_linear(-800, 2)
 
