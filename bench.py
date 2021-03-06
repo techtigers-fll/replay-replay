@@ -20,16 +20,17 @@ def run(robot: Robot):
     brick_buttons = brick.buttons.pressed()
 
     robot.drive(drive_pid, 200, 0, 2000)
-    robot.drive(drive_pid, 100, 0, 1000)
-    robot.move_linear(800, 5, False)
-    robot.drive(drive_pid, -200, 0, 2500)
-
+    robot.drive(drive_pid, 80, 0, 1000)
+    robot.move_linear(800, 4.6, False)
+    robot.drive(drive_pid, -200, 0, 1500)
+    return
     while not any(brick.buttons.pressed()):
         wait(10)
 
     while any(brick.buttons.pressed()):
         wait(10)
-
+    
+#Slide code, run directly after bench
     robot.reset_sensors()
 
     robot.move_linear(800, 1)

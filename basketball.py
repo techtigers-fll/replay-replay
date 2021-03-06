@@ -30,14 +30,14 @@ def run(robot: Robot):
     robot.stop_on_black(drive_pid, 100, 55, LineSensor.RIGHT)
     robot.drive(drive_pid, -200, 55, 100)
     robot.turn(turn_pid, 0)
-    robot.drive(drive_pid, 400, 0, 1800)
+    robot.drive(drive_pid, 400, 0, 1200)
+    robot.drive(drive_pid, 200, 0, 600)
 
     robot.move_linear(-800, 6.55)
     robot.move_linear(800, 6)
-    robot.move_linear(-800, 6.3)
-    robot.linear_attachment_motor.run_until_stalled(-200, Stop.BRAKE, 30)
+    robot.move_linear(-800, 6.1)
     robot.move_linear(800, 0.5)
-    robot.move_linear(800, 4.8, False)
+    robot.move_linear(800, 4.5, False)
 
     robot.drive(drive_pid, -400, 0, 250)
     robot.turn(slow_turn_pid, 90)
@@ -65,6 +65,7 @@ def run(robot: Robot):
     robot.drive(drive_pid, 200, 0, 300)
     robot.turn(turn_pid, -45)
 
+    robot.move_linear(-800, 3, False)
     robot.drive(drive_pid, 200, -45, 1700)
     robot.turn(slow_turn_pid, -135)
     robot.drive(drive_pid, 200, -135, 1000)
@@ -75,3 +76,5 @@ def run(robot: Robot):
     robot.follow_line(straight_line_follow_pid,
             200, 2000, LineSensor.CENTER, LineEdge.RIGHT)
     robot.drive(drive_pid, 200, -75, 2000)
+    
+
