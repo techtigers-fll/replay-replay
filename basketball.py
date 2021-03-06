@@ -14,24 +14,12 @@ def run(robot: Robot):
     drive_pid = Pid(1, 0, 0)
     robot.reset_sensors(0)
 
-    # # robot.drive(drive_pid, 400, 0, 450) 
-    # # robot.turn(turn_pid, 55)
-    # robot.drive(drive_pid, 400, 60, 1300) 
-    # robot.stop_on_black(drive_pid, 100, 60, LineSensor.CENTER)
-    # robot.drive(drive_pid, -200, 60, 150)
-    # robot.turn(turn_pid, 0)
-    # # robot.follow_line(straight_line_follow_pid2, 
-    # #         400, 2100, LineSensor.RIGHT, LineEdge.LEFT)
-    # robot.drive(drive_pid, 400, 0, 2000)
-
     robot.drive(drive_pid, 400, 0, 450) 
-    robot.turn(turn_pid, 55)
-    robot.drive(drive_pid, 400, 55, 900) 
-    robot.stop_on_black(drive_pid, 100, 55, LineSensor.RIGHT)
-    robot.drive(drive_pid, -200, 55, 100)
+    robot.turn(turn_pid, 30)
+    robot.drive(drive_pid, 400, 30, 1700) 
+    robot.stop_on_black(drive_pid, 100, 30, LineSensor.RIGHT)
     robot.turn(turn_pid, 0)
-    robot.drive(drive_pid, 400, 0, 1200)
-    robot.drive(drive_pid, 200, 0, 600)
+    robot.drive(drive_pid, 200, 0, 700)
 
     robot.move_linear(-800, 6.55)
     robot.move_linear(800, 6)
