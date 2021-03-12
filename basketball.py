@@ -14,25 +14,33 @@ def run(robot: Robot):
     drive_pid = Pid(1, 0, 0)
     robot.reset_sensors(0)
 
+   #Drive out of base and stop on black line 
     robot.drive(drive_pid, 400, 0, 450) 
-    robot.turn(turn_pid, 30)
-    robot.drive(drive_pid, 400, 30, 1700) 
-    robot.stop_on_black(drive_pid, 100, 30, LineSensor.RIGHT)
+    robot.turn(turn_pid, 55)
+    robot.stop_on_black(drive_pid, 300, 55, LineSensor.RIGHT)
+    #Turn and follow line towards basketball
+    robot.drive(drive_pid, -200, 55, 250)
     robot.turn(turn_pid, 0)
-    robot.drive(drive_pid, 200, 0, 700)
+    robot.follow_line(straight_line_follow_pid, 200, 1700, LineSensor.RIGHT, LineEdge.LEFT)
+    #Push ball into basket
+    robot.drive(drive_pid, 200, 0, 1000)
 
+    #Lift Boccia share and basketball all the way up
     robot.move_linear(-800, 6.55)
     robot.move_linear(800, 6)
     robot.move_linear(-800, 6.1)
     robot.move_linear(800, 0.5)
     robot.move_linear(800, 4.5, False)
 
+
+    #Back out and go towards aim and frame
     robot.drive(drive_pid, -400, 0, 250)
     robot.turn(slow_turn_pid, 90)
     robot.drive(drive_pid, 400, 90, 1000)
     robot.follow_line(straight_line_follow_pid, 
             200, 1000, LineSensor.RIGHT, LineEdge.RIGHT)
     robot.turn(turn_pid, 90)
+    #Align, push, and drop aim and frame
     robot.align(200, LineSensor.LEFT, LineSensor.CENTER)
     robot.turn(turn_pid, 60)
     robot.drive(drive_pid, 100, 60, 1000)
@@ -40,20 +48,22 @@ def run(robot: Robot):
     robot.move_linear(-800, 2.5)
     robot.move_linear(800,0.5)
     # robot.move_linear(800, 3.5, False)
+    #Back out and drop the blocks into the target area
     robot.stop_on_black(drive_pid, -100, 60, LineSensor.CENTER)
     robot.turn(turn_pid, 0)
     robot.drive(drive_pid, 200, 0, 700)
     robot.move_dropper(100, 45)
     
     wait(500)
+    #Reset dropper to and collect health unit 
     robot.move_dropper(-100, 45, False)
     robot.drive(drive_pid, -100, 0, 300)
     robot.stop_on_black(drive_pid, -200, 0, LineSensor.CENTER) 
-    robot.move_linear(800, 2, False)
+    robot.move_linear(800, 3.5, False)
+    brick = EV3Brick()
     robot.drive(drive_pid, 200, 0, 300)
     robot.turn(turn_pid, -45)
 
-    robot.move_linear(-800, 3, False)
     robot.drive(drive_pid, 200, -45, 1700)
     robot.turn(slow_turn_pid, -135)
     robot.drive(drive_pid, 200, -135, 1000)
@@ -64,5 +74,6 @@ def run(robot: Robot):
     robot.follow_line(straight_line_follow_pid,
             200, 2000, LineSensor.CENTER, LineEdge.RIGHT)
     robot.drive(drive_pid, 200, -75, 2000)
+    robot.move_linear(-800, 4.5)
     
 

@@ -25,9 +25,9 @@ def run(robot: Robot):
 
     # Backing out and squaring on wall
     robot.stop_on_white(sharp_drive_pid, -100, 10, LineSensor.CENTER)
-    robot.drive(drive_pid, 200, 0, 100)
+    # robot.drive(drive_pid, -200, 10, 100)
     robot.turn(turn_pid, -90)
-    robot.drive(drive_pid, -200, 0, 800)
+    robot.drive(drive_pid, -200, -90, 800)
     robot.left_motor.run_time(-800, 500)
     robot.reset_sensors(-90)
 
@@ -120,7 +120,7 @@ def run(robot: Robot):
     robot.drive(drive_pid, -400, 125, 600)
     robot.turn(turn_pid, 110)
     robot.drive(drive_pid, 200, 110, 1500)
-    robot.move_dropper(100, 45)
+    robot.move_dropper(100, 40)
 
     # Going to dance
     robot.drive(drive_pid, -200, 110, 600)

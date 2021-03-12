@@ -44,6 +44,9 @@ class Robot:
             self.drive_base = DriveBase(
                 self.left_motor, self.right_motor, self.wheel_diameter, self.axle_track)
             self.state = "OK"
+            self.clock = StopWatch()
+            self.dance_clock = 0
+            self.sign = 1
         except:
             brick.screen.clear()
             big_font = Font(size=18)
@@ -425,3 +428,18 @@ class Robot:
         """
         self.stop_motors()
         self.dropper_attachment_motor.run_angle(speed, degrees, Stop.BRAKE, wait)
+
+    def dance(self, speed, duration):
+        if self.dance_clock == 0:
+            self.dance_clock = self.clock.time()
+            self.drive_base.drive(speed * self.sign, 0)
+            self.linear_attachment_motor.run(200 * self.sign * -1)
+
+        if self.clock.time() - self.dance_clock > duration:
+            self.sign *= -1
+            self.drive_base.drive(speed * self.sign, 0)
+            self.linear_attachment_motor.run(200 * self.sign * -1)
+            self.dance_clock = self.clock.time()
+            return True
+        return False
+

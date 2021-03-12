@@ -22,7 +22,7 @@ def run(robot: Robot):
     robot.drive(drive_pid, 200, 0, 2000)
     robot.drive(drive_pid, 80, 0, 1000)
     robot.move_linear(800, 4.6, False)
-    robot.drive(drive_pid, -200, 0, 1500)
+    robot.drive(drive_pid, -200, 0, 1200)
     return
     while not any(brick.buttons.pressed()):
         wait(10)
