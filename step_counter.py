@@ -7,6 +7,7 @@ from pybricks.parameters import (Port, Stop, Direction, Color,
 from pybricks.tools import wait, StopWatch
 from pybricks.robotics import DriveBase
 from pybricks.media.ev3dev import Font
+import mario_music
 
 def run(robot: Robot):
     straight_line_follow_pid = Pid(1.5, 0, 10)
@@ -20,8 +21,9 @@ def run(robot: Robot):
 
     # Going to step counter
     robot.linear_attachment_motor.run_until_stalled(200, Stop.BRAKE, 20)
-    robot.drive(drive_pid, 400, 3, 3000)
-    robot.drive(drive_pid, 200, 3, 500)
+    robot.drive(drive_pid, 400, 3, 2750)
+    wait(500)
+    robot.drive(drive_pid, 200, 3, 1000)
 
     # Backing out and squaring on wall
     robot.stop_on_white(sharp_drive_pid, -100, 10, LineSensor.CENTER)
@@ -50,7 +52,7 @@ def run(robot: Robot):
     robot.drive(drive_pid, 150, -35, 900)
     robot.drive(drive_pid, -150, -35, 370)
 
-    robot.move_linear(200, 0.74)
+    robot.move_linear(200, 0.64)
     robot.drive(drive_pid, -150, -35, 200)
     robot.move_linear(400, 0.3, False)
     robot.drive(drive_pid, -150, -35, 1300)
@@ -79,10 +81,10 @@ def run(robot: Robot):
     # Doing row machine
     robot.drive(drive_pid, 400, -90, 1000) # 1200 for full run
 
-    robot.move_linear(-800, 0.5, False)
+    robot.move_linear(-800, 0.7, False)
     robot.turn(slow_turn_pid, 10)
     robot.drive(drive_pid, 200, 10, 300)
-    robot.move_linear(800, 0.5)
+    robot.move_linear(800, 0.7)
     robot.drive(sharp_drive_pid, -100, 10, 1300)
     robot.move_linear(-800, 0.5)
     robot.drive(drive_pid, -200, 10, 50)
@@ -130,5 +132,7 @@ def run(robot: Robot):
     robot.drive(drive_pid, 400, 180, 1000)
 
     robot.turn(turn_pid, -130)
-    robot.drive(drive_pid, 400, -130, 1200)
+    robot.drive(drive_pid, 400, -130, 900)
+    mario_music.run(robot)
+
 

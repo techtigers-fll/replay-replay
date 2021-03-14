@@ -432,13 +432,13 @@ class Robot:
     def dance(self, speed, duration):
         if self.dance_clock == 0:
             self.dance_clock = self.clock.time()
-            self.drive_base.drive(speed * self.sign, 0)
-            self.linear_attachment_motor.run(200 * self.sign * -1)
+            self.left_motor.run(speed * self.sign * -1)
+            self.right_motor.run(speed * self.sign)
 
         if self.clock.time() - self.dance_clock > duration:
             self.sign *= -1
-            self.drive_base.drive(speed * self.sign, 0)
-            self.linear_attachment_motor.run(200 * self.sign * -1)
+            self.left_motor.run(speed * self.sign * -1)
+            self.right_motor.run(speed * self.sign)
             self.dance_clock = self.clock.time()
             return True
         return False

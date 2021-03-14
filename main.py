@@ -11,6 +11,7 @@ import bench
 import step_counter
 import attachment_runner
 import mario_music
+import slide
 brick = EV3Brick()
 robot = None
 # while True:
@@ -59,7 +60,7 @@ while True:
 
     if Button.LEFT in brick_buttons:
         # Set mission selected to the sandbox program
-        mission = bench
+        mission = slide
 
     if Button.DOWN in brick_buttons:
         # Set mission selected to the sandbox program

@@ -35,12 +35,12 @@ def run(robot: Robot):
     ["E4/16", "C4/8", "G3/8", "G#3/8", "A3/16", "F4/8", "F4/16", "A3/4"],
     ["B3/16","F4/8", "F4/16", "F4/16.", "E4/16.", "D4/16.", "C4/4", "R/8"],
     ]
-    duration = [100, 2400, 2700, 2620, 2470, 2420, 2740, 2260, 2160, 2250, 2540, 2800,
+    duration = [0, 2400, 2700, 2420, 2470, 2420, 2740, 2260, 2160, 2250, 2540, 2800,
             1920, 2560, 2170, 2250]
-    speed = -100
+    speed = 200
     counter = 0
     while True:
-        if robot.dance(speed, duration[counter]):
-            brick.speaker.play_notes(music[counter], 100)
+        if robot.dance(speed, duration[counter % len(duration)]):
+            brick.speaker.play_notes(music[counter % len(music)], 100)
             counter += 1
 

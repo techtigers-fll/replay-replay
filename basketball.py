@@ -23,12 +23,12 @@ def run(robot: Robot):
     robot.turn(turn_pid, 0)
     robot.follow_line(straight_line_follow_pid, 200, 1700, LineSensor.RIGHT, LineEdge.LEFT)
     #Push ball into basket
-    robot.drive(drive_pid, 200, 0, 1000)
+    robot.drive(drive_pid, 100, 0, 2000)
 
     #Lift Boccia share and basketball all the way up
     robot.move_linear(-800, 6.55)
-    robot.move_linear(800, 6)
-    robot.move_linear(-800, 6.1)
+    robot.move_linear(800, 6.1)
+    robot.move_linear(-800, 6.2)
     robot.move_linear(800, 0.5)
     robot.move_linear(800, 4.5, False)
 
