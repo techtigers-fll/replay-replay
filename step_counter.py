@@ -21,9 +21,8 @@ def run(robot: Robot):
 
     # Going to step counter
     robot.linear_attachment_motor.run_until_stalled(200, Stop.BRAKE, 20)
-    robot.drive(drive_pid, 400, 3, 2750)
-    wait(500)
-    robot.drive(drive_pid, 200, 3, 1000)
+    robot.drive(drive_pid, 400, 3, 2900)
+    robot.drive(drive_pid, 100, 3, 1500)
 
     # Backing out and squaring on wall
     robot.stop_on_white(sharp_drive_pid, -100, 10, LineSensor.CENTER)
@@ -74,30 +73,34 @@ def run(robot: Robot):
     # Backing into wall
     robot.drive(drive_pid,-200, 0, 1000)
     robot.stop_on_black(drive_pid, -50, 0, LineSensor.LEFT)
-    robot.turn(turn_pid, -90) 
-    robot.drive(drive_pid, -400, -90, 600)
+    robot.turn(turn_pid, -95) 
+    robot.drive(drive_pid, -400, -95, 600)
     robot.reset_sensors(-90)
 
     # Doing row machine
-    robot.drive(drive_pid, 400, -90, 1000) # 1200 for full run
+    robot.drive(drive_pid, 400, -90, 500)
+    robot.follow_line(straight_line_follow_pid, 100, 1000, LineSensor.RIGHT, LineEdge.RIGHT)
+    robot.turn(turn_pid, -90) 
+    robot.stop_on_black(drive_pid, -200, -90, LineSensor.RIGHT)
+    robot.drive(drive_pid, 400, -90, 900)
 
     robot.move_linear(-800, 0.7, False)
     robot.turn(slow_turn_pid, 10)
-    robot.drive(drive_pid, 200, 10, 300)
-    robot.move_linear(800, 0.7)
+    robot.drive(drive_pid, 200, 10, 275)
+    robot.move_linear(800, 0.8)
     robot.drive(sharp_drive_pid, -100, 10, 1300)
-    robot.move_linear(-800, 0.5)
-    robot.drive(drive_pid, -200, 10, 50)
+    robot.move_linear(-800, 0.8)
+    robot.drive(drive_pid, -200, 10, 150)
     
     # Doing weight machine
-    robot.move_linear(-600, 5.8, False)
+    robot.move_linear(-600, 5.5, False)
     robot.turn(slow_turn_pid, -90)
     robot.drive(drive_pid, 400, -90, 1450)
     robot.drive(drive_pid, 200, -90, 1200)
     robot.reset_sensors(-90)
     robot.drive(drive_pid, -200, -90, 500)
     robot.turn(slow_turn_pid, 0)
-    robot.drive(drive_pid, 200, 0, 150)
+    robot.drive(drive_pid, 200, 0, 500)
     robot.linear_attachment_motor.run_until_stalled(-200, Stop.BRAKE, 20)
     robot.move_linear(600, 5)
     robot.drive(drive_pid, -400, 0, 300)
@@ -122,7 +125,7 @@ def run(robot: Robot):
     robot.drive(drive_pid, -400, 125, 600)
     robot.turn(turn_pid, 110)
     robot.drive(drive_pid, 200, 110, 1500)
-    robot.move_dropper(100, 40)
+    robot.move_dropper(-100, 80)
 
     # Going to dance
     robot.drive(drive_pid, -200, 110, 600)

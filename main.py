@@ -56,15 +56,15 @@ while True:
 
     if Button.UP in brick_buttons:
         # Set mission selected to the sandbox program
-        mission = mario_music
+        mission = basketball
 
     if Button.LEFT in brick_buttons:
         # Set mission selected to the sandbox program
-        mission = slide
+        mission = bench
 
     if Button.DOWN in brick_buttons:
         # Set mission selected to the sandbox program
-        mission = attachment_runner
+        mission = slide
 
     # Check when no buttons are pressed
     if len(brick_buttons) == 0:
