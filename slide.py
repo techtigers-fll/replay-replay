@@ -25,3 +25,4 @@ def run(robot: Robot):
 
     robot.drive(drive_pid, -200, -3, 1200)
     robot.drive(sharp_drive_pid, -400, 30, 1500)
+    robot.linear_attachment_motor.run_until_stalled(200, Stop.BRAKE, 20)
