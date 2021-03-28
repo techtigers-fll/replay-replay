@@ -1,7 +1,7 @@
 from robot import Pid, Robot, LineEdge, LineSensor
 from pybricks.hubs import EV3Brick
 from pybricks.tools import wait
-from pybricks.parameters import Button
+from pybricks.parameters import Button, Stop
 import basketball, bench, slide, step_counter
 
 def button_press():
@@ -13,6 +13,11 @@ def button_press():
         wait(10)
 
 def run(robot: Robot):
+    robot.dropper_attachment_motor.run_until_stalled(100, Stop.BRAKE, 100)
+    robot.move_dropper(-400, 250)
+
+    button_press()
+
     basketball.run(robot)
 
     button_press()

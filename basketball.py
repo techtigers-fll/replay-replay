@@ -52,11 +52,12 @@ def run(robot: Robot):
     robot.stop_on_black(drive_pid, -100, 60, LineSensor.CENTER)
     robot.turn(turn_pid, 0)
     robot.drive(drive_pid, 200, 0, 700)
-    robot.move_dropper(-100, 80)
+    robot.move_dropper(-400, 200)
+    
     
     wait(500)
     #Reset dropper to and collect health unit 
-    robot.move_dropper(100, 80, False)
+    robot.move_dropper(200, 200, False)
     robot.drive(drive_pid, -100, 0, 300)
     robot.stop_on_black(drive_pid, -200, 0, LineSensor.CENTER) 
     robot.move_linear(800, 3.5, False)
