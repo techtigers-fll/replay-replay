@@ -56,7 +56,7 @@ while True:
 
     if Button.UP in brick_buttons:
         # Set mission selected to the sandbox program
-        mission = basketball
+        mission = attachment_runner
 
     if Button.LEFT in brick_buttons:
         # Set mission selected to the sandbox program
