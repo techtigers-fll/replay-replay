@@ -13,8 +13,10 @@ def button_press():
         wait(10)
 
 def run(robot: Robot):
-    robot.dropper_attachment_motor.run_until_stalled(100, Stop.BRAKE, 100)
-    robot.move_dropper(-400, 250)
+    robot.dropper_attachment_motor.run_until_stalled(100, Stop.BRAKE, 40)
+    robot.move_dropper(-200, 150)
+
+    ##210 anGLE
 
     button_press()
 
