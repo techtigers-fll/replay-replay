@@ -37,7 +37,7 @@ def run(robot: Robot):
     ]
     duration = [0, 2400, 2700, 2420, 2470, 2420, 2740, 2260, 2160, 2250, 2540, 2800,
             1920, 2560, 2170, 2250]
-    speed = 200
+    speed = -200
     counter = 0
     while True:
         if robot.dance(speed, duration[counter % len(duration)]):

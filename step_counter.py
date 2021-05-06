@@ -125,19 +125,20 @@ def run(robot: Robot):
     robot.move_linear(-600, 2, False)
     robot.turn(turn_pid, 100)
     robot.drive(drive_pid, 200, 100, 1500)
-    robot.drive(sharp_drive_pid, -100, 95, 500)
-    robot.move_dropper(-400, 80)
-    wait(100)
+    robot.drive(sharp_drive_pid, -100, 95, 700)
+    robot.move_dropper(-400, 40)
+    wait(300)
 
     # Going to dance
     robot.drive(drive_pid, -200, 110, 600)
+    robot.move_dropper(400, 40, False)
     robot.stop_on_white(drive_pid, -150, 110, LineSensor.LEFT)
     robot.drive(drive_pid, 200, 110, 300)
     robot.turn(turn_pid, 180)
     robot.drive(drive_pid, 400, 180, 1000)
 
-    robot.turn(turn_pid, -130)
-    robot.drive(drive_pid, 400, -130, 900)
+    robot.turn(turn_pid, -115)
+    robot.drive(drive_pid, 400, -115, 1500)
     mario_music.run(robot)
 
 

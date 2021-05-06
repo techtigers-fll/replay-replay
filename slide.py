@@ -16,13 +16,24 @@ def run(robot: Robot):
     drive_pid = Pid(2, 0, 0)
     sharp_drive_pid = Pid(4, 0, 0)
     robot.reset_sensors()
-    
-    robot.drive(drive_pid, 400, 0, 2500)
+    brick = EV3Brick()
 
-    robot.drive(drive_pid, -100, 0, 1600)
+    # robot.dropper_attachment_motor.run_until_stalled(100, Stop.BRAKE, 40)
+    # robot.move_dropper(-100, 150)
+
+#     while len(brick.buttons.pressed()) == 0:
+#         wait(10)
+
+#     while len(brick.buttons.pressed()) > 0:
+#         wait(10)
+
+    robot.drive(drive_pid, 400, 0, 900)
+    robot.drive(sharp_drive_pid, 400, -35, 2500)
+
+    robot.drive(drive_pid, -100, -35, 1600)
     wait(500)
     robot.stop_motors()
 
-    robot.drive(drive_pid, -200, -3, 1200)
-    robot.drive(sharp_drive_pid, -400, 30, 1500)
-    robot.linear_attachment_motor.run_until_stalled(200, Stop.BRAKE, 20)
+    robot.drive(drive_pid, -200, -35, 1200)
+    robot.drive(sharp_drive_pid, -400, 0, 1500)
+    # robot.linear_attachment_motor.run_until_stalled(200, Stop.BRAKE, 20)

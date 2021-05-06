@@ -1,6 +1,6 @@
 #!/usr/bin/env pybricks-micropython
 from pybricks.hubs import EV3Brick
-from pybricks.parameters import Button, Stop
+from pybricks.parameters import Button
 from pybricks.tools import wait, StopWatch
 
 from robot import Robot
@@ -38,6 +38,8 @@ robot.beep()
 # Initialize mission
 mission = None
 display_counter = 0
+# robot.dropper_attachment_motor.run_until_stalled(100, Stop.BRAKE, 100)
+# robot.move_dropper(-100, 100)
 while True:
     if display_counter == 0:
         robot.display_sensor_values()
@@ -56,7 +58,7 @@ while True:
 
     if Button.UP in brick_buttons:
         # Set mission selected to the sandbox program
-        mission = attachment_runner
+        mission = basketball
 
     if Button.LEFT in brick_buttons:
         # Set mission selected to the sandbox program

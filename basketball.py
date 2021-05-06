@@ -26,9 +26,9 @@ def run(robot: Robot):
     robot.drive(drive_pid, 100, 0, 2000)
 
     #Lift Boccia share and basketball all the way up
-    robot.move_linear(-800, 6.55)
+    robot.move_linear(-800, 6.3)
     robot.move_linear(800, 6.1)
-    robot.move_linear(-800, 6.2)
+    robot.move_linear(-800, 6.4)
     robot.move_linear(800, 0.5)
     robot.move_linear(800, 4.5, False)
 
@@ -36,6 +36,7 @@ def run(robot: Robot):
     #Back out and go towards aim and frame
     robot.drive(drive_pid, -400, 0, 250)
     robot.turn(slow_turn_pid, 90)
+    robot.move_dropper(-200, 60, False)
     robot.drive(drive_pid, 400, 90, 1000)
     robot.follow_line(straight_line_follow_pid, 
             200, 1000, LineSensor.RIGHT, LineEdge.RIGHT)
@@ -75,6 +76,8 @@ def run(robot: Robot):
     robot.follow_line(straight_line_follow_pid,
             200, 2000, LineSensor.CENTER, LineEdge.RIGHT)
     robot.drive(drive_pid, 200, -75, 2000)
+    robot.move_dropper(-200, 40, False)
     robot.move_linear(-800, 4.5)
+    
     
 
