@@ -27,8 +27,9 @@ def run(robot: Robot):
 #     while len(brick.buttons.pressed()) > 0:
 #         wait(10)
 
-    robot.drive(drive_pid, 400, 0, 900)
-    robot.drive(sharp_drive_pid, 400, -35, 2500)
+    robot.drive(sharp_drive_pid, 400, 0, 450)
+    robot.turn(turn_pid, -35)
+    robot.drive(drive_pid, 400, -35, 2500)
 
     robot.drive(drive_pid, -100, -35, 1600)
     wait(500)
@@ -36,4 +37,5 @@ def run(robot: Robot):
 
     robot.drive(drive_pid, -200, -35, 1200)
     robot.drive(sharp_drive_pid, -400, 0, 1500)
+
     # robot.linear_attachment_motor.run_until_stalled(200, Stop.BRAKE, 20)
