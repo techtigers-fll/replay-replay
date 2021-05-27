@@ -76,7 +76,7 @@ def run(robot: Robot):
     robot.follow_line(straight_line_follow_pid,
             200, 2000, LineSensor.CENTER, LineEdge.RIGHT)
     robot.drive(drive_pid, 200, -75, 2000)
-    robot.move_dropper(-200, 40, False)
+    robot.move_dropper(200, 5, False)
     robot.move_linear(-800, 4.5)
     
     
