@@ -17,8 +17,18 @@ def run(robot: Robot):
     drive_pid = Pid(1, 0, 0)
     sharp_drive_pid = Pid(4, 0, 0)
     robot.reset_sensors()
+    brick = EV3Brick()
     
 
+    robot.dropper_attachment_motor.run_until_stalled(100, Stop.BRAKE, 40)
+    robot.move_dropper(-200, 205)
+    robot.linear_attachment_motor.run_until_stalled(200, Stop.BRAKE, 20)
+
+    while len(brick.buttons.pressed()) == 0:
+        wait(10)
+
+    while len(brick.buttons.pressed()) > 0:
+        wait(10)
     # Going to step counter
     robot.drive(drive_pid, 400, 3, 2900)
     robot.drive(drive_pid, 100, 3, 1100)
@@ -126,8 +136,8 @@ def run(robot: Robot):
     robot.turn(turn_pid, 100)
     robot.drive(drive_pid, 200, 100, 1500)
     robot.drive(sharp_drive_pid, -100, 95, 700)
-    robot.move_dropper(-400, 40)
-    wait(300)
+    robot.move_dropper(-1200, 85)
+    wait(700)
 
     # Going to dance
     robot.drive(drive_pid, -200, 110, 600)
