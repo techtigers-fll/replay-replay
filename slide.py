@@ -27,7 +27,7 @@ def run(robot: Robot):
 #     while len(brick.buttons.pressed()) > 0:
 #         wait(10)
 
-    robot.drive(sharp_drive_pid, 400, 0, 450)
+    robot.drive(sharp_drive_pid, 400, 0, 1000)
     robot.turn(turn_pid, -35)
     robot.drive(drive_pid, 400, -35, 2500)
 
