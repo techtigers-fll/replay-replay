@@ -23,7 +23,7 @@ def run(robot: Robot):
     robot.turn(turn_pid, 0)
     robot.follow_line(straight_line_follow_pid, 200, 1700, LineSensor.RIGHT, LineEdge.LEFT)
     #Push ball into basket
-    robot.drive(drive_pid, 200, 0, 1000)
+    robot.drive(drive_pid, 100, 0, 2000)
 
     #Lift Boccia share and basketball all the way up
     robot.move_linear(-800, 6.3)
@@ -43,7 +43,7 @@ def run(robot: Robot):
     robot.turn(turn_pid, 90)
     robot.drive(drive_pid, 200, 90, 500)
     #Align, push, and drop aim and frame
-    robot.stop_on_black(drive_pid, 400, 90 , LineSensor.LEFT)
+    robot.stop_on_black(drive_pid, 200, 90 , LineSensor.LEFT)
     robot.align(200, LineSensor.LEFT, LineSensor.CENTER)
     robot.turn(turn_pid, 60)
     robot.drive(drive_pid, 100, 60, 1000)
@@ -64,19 +64,18 @@ def run(robot: Robot):
     robot.drive(drive_pid, -100, 0, 300)
     robot.stop_on_black(drive_pid, -200, 0, LineSensor.CENTER) 
     robot.move_linear(800, 3.5, False)
-    brick = EV3Brick()
     robot.drive(drive_pid, 200, 0, 300)
     robot.turn(turn_pid, -45)
 
     robot.drive(drive_pid, 200, -45, 1700)
-    robot.turn(slow_turn_pid, -135)
+    robot.turn(turn_pid, -135)
     robot.drive(drive_pid, 200, -135, 1000)
     robot.stop_on_black(drive_pid, 200, -135, LineSensor.CENTER) 
     robot.drive(drive_pid, 200, -135, 100)
-    robot.turn(slow_turn_pid, -75)
+    robot.turn(turn_pid, -75)
     robot.drive(drive_pid, 200, -75, 500)
     robot.follow_line(straight_line_follow_pid,
-            200, 2000, LineSensor.CENTER, LineEdge.RIGHT)
+            400, 1000, LineSensor.CENTER, LineEdge.RIGHT)
     robot.drive(drive_pid, 200, -75, 2000)
     robot.move_dropper(200, 5, False)
     robot.move_linear(-800, 4.5)
