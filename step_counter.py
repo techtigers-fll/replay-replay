@@ -20,15 +20,6 @@ def run(robot: Robot):
     brick = EV3Brick()
     
 
-    robot.dropper_attachment_motor.run_until_stalled(100, Stop.BRAKE, 40)
-    robot.move_dropper(-200, 205)
-    robot.linear_attachment_motor.run_until_stalled(200, Stop.BRAKE, 20)
-
-    while len(brick.buttons.pressed()) == 0:
-        wait(10)
-
-    while len(brick.buttons.pressed()) > 0:
-        wait(10)
     # Going to step counter
     robot.drive(drive_pid, 400, 3, 2900)
     robot.drive(drive_pid, 100, 3, 1100)

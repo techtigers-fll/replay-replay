@@ -12,6 +12,7 @@ def run(robot: Robot):
     turn_pid = Pid(10, 0, 5)
     slow_turn_pid = Pid(3, 0, 0)
     drive_pid = Pid(1, 0, 0)
+    sharp_drive_pid = Pid(4, 0, 0)
     robot.reset_sensors(0)
 
    #Drive out of base and stop on black line 
@@ -43,7 +44,6 @@ def run(robot: Robot):
     robot.turn(turn_pid, 90)
     robot.drive(drive_pid, 200, 90, 500)
     #Align, push, and drop aim and frame
-    robot.stop_on_black(drive_pid, 200, 90 , LineSensor.LEFT)
     robot.align(200, LineSensor.LEFT, LineSensor.CENTER)
     robot.turn(turn_pid, 60)
     robot.drive(drive_pid, 100, 60, 1000)
@@ -71,12 +71,12 @@ def run(robot: Robot):
     robot.turn(turn_pid, -135)
     robot.drive(drive_pid, 200, -135, 1000)
     robot.stop_on_black(drive_pid, 200, -135, LineSensor.CENTER) 
-    robot.drive(drive_pid, 200, -135, 100)
+    # robot.drive(drive_pid, 200, -135, -100)
     robot.turn(turn_pid, -75)
     robot.drive(drive_pid, 200, -75, 500)
     robot.follow_line(straight_line_follow_pid,
-            400, 1000, LineSensor.CENTER, LineEdge.RIGHT)
-    robot.drive(drive_pid, 200, -75, 2000)
+            200, 500, LineSensor.CENTER, LineEdge.RIGHT)
+    robot.drive(sharp_drive_pid, 400, -73, 1750)
     robot.move_dropper(200, 5, False)
     robot.move_linear(-800, 4.5)
     

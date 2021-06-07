@@ -7,8 +7,8 @@ from pybricks.parameters import (Port, Stop, Direction, Color,
 from pybricks.tools import wait, StopWatch
 from pybricks.robotics import DriveBase
 from pybricks.media.ev3dev import Font
-
 def run(robot: Robot):
+
     straight_line_follow_pid = Pid(1.5, 0, 10)
     sharp_line_follow_pid = Pid(5, 0, 0)
     turn_pid = Pid(10, 0, 5)
@@ -18,19 +18,9 @@ def run(robot: Robot):
     robot.reset_sensors()
     brick = EV3Brick()
 
-    robot.dropper_attachment_motor.run_until_stalled(100, Stop.BRAKE, 40)
-    robot.move_dropper(-100, 150)
-
-    while len(brick.buttons.pressed()) == 0:
-        wait(10)
-
-    while len(brick.buttons.pressed()) > 0:
-        wait(10)
-
     robot.drive(sharp_drive_pid, 200, 0, 1600)
     robot.turn(turn_pid, -35)
     robot.drive(drive_pid, 200, -35, 2500)
-    # robot.drive(drive_pid, 200, 0, 10000)
 
 
     robot.drive(drive_pid, -200, -35, 900)
@@ -47,3 +37,4 @@ def run(robot: Robot):
         wait(10)
 
     robot.linear_attachment_motor.run_until_stalled(200, Stop.BRAKE, 20)
+
